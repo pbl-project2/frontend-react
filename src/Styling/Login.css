@@ -1,0 +1,56 @@
+* {
+  font-family: "rubik";
+  background-color: #161616;
+  color: white;
+}
+header {
+  text-align: center;
+  margin-top: 12rem;
+}
+
+.input_field {
+  display: flex;
+}
+p {
+  text-align: center;
+  color: gray;
+}
+.creds {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+input {
+  width: 40%;
+  margin: 10px;
+  height: 50px;
+  border-radius: 7px;
+  background-color: #222222;
+  padding-left: 20px;
+  border: 0px;
+}
+button {
+  height: 45px;
+  border: 0px;
+  border-radius: 7px;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(158, 57, 138, 1) 0%,
+    rgba(255, 0, 33, 1) 100%
+  );
+  width: 9rem;
+  margin-top: 10px;
+}
+h3 {
+  margin: 20px;
+  font-size: 20px;
+}
+span {
+  background: -webkit-linear-gradient(#a03989, orange);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
