@@ -1,28 +1,30 @@
-import { collection, query, where, onSnapshot, doc } from "firebase/firestore";
+// import { collection, query, where, onSnapshot, doc } from "firebase/firestore";
+import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { db } from "../firebase/firebase";
+import DisplayUser from "./DisplayUser";
 
 const Display = () => {
-//   const [data, setData] = useState([]);
+  const [user, setUsers] = useState([]);
   useEffect(() => {
-    const ref = collection(db, "users");
-    const q = query(ref, where("name", "==", "Mrudul"));
-    const unsub = onSnapshot(q, (snapshot) => {
-      let data = [];
-      snapshot.forEach((doc) => {
-        console.log(doc.data());
-      });
-    //   setData(data);
-    });
-    return () => {
-      unsub();
-    };
-  }, []);
-//   console.log(data);
+    const unsubscribe = onSnapshot(
+      query(collection(db, "users"), orderBy("createdAt", "desc")),
+      (snapshot) => {
+        setUsers(snapshot.docs);
+      }
+    );
+    return () => unsubscribe;
+  }, [db]);
   return (
     <div>
-      {/* <h1>Hello World</h1> */}
-      <p>Hello</p>
+      {user.map(users => (
+        <DisplayUser
+          key={users.data().mobile_no}
+          name={users.data().name}
+          mobile_no={users.data().mobile_no}
+          createdAt={users.data().createdAt}
+        />
+      ))}
     </div>
   );
 };
