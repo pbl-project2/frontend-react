@@ -1,9 +1,13 @@
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { db } from "../firebase/firebase";
-import DisplayUser from "./DisplayUser";
+import DisplayUser from "./AdminUsers";
 
-const Display = () => {
+//Styling
+import "../Styling/Admin.css";
+import AdminUser from "./AdminUsers";
+
+const Admin = () => {
   const [user, setUsers] = useState([]);
   useEffect(() => {
     const unsubscribe = onSnapshot(
@@ -16,16 +20,19 @@ const Display = () => {
   }, [db]);
   return (
     <div>
-      {user.map(users => (
-        <DisplayUser
-          key={users.data().mobile_no}
-          name={users.data().name}
-          mobile_no={users.data().mobile_no}
-          createdAt={users.data().createdAt}
-        />
-      ))}
+      <h1>ADMIN</h1>
+      <div className="container">
+        {user.map((users) => (
+          <AdminUser
+            key={users.data().mobile_no}
+            name={users.data().name}
+            mobile_no={users.data().mobile_no}
+            createdAt={users.data().createdAt}
+          />
+        ))}
+      </div>
     </div>
   );
 };
 
-export default Display;
+export default Admin;

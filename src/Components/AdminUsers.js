@@ -1,10 +1,10 @@
 import React from "react";
-import "../Styling/DisplayUser.css";
+import "../Styling/AdminUsers.css";
 
-const DisplayUser = ({ name, createdAt, mobile_no }) => {
+const AdminUser = ({ name, mobile_no }) => {
   return (
     <>
-      <div className="displayuser">
+      <div className="adminuser">
         <div className="user">
           <div className="user">
             <p>{name}</p>
@@ -16,4 +16,4 @@ const DisplayUser = ({ name, createdAt, mobile_no }) => {
   );
 };
 
-export default DisplayUser;
+export default AdminUser;

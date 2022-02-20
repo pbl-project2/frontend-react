@@ -10,6 +10,7 @@ const Login = () => {
     name: "",
     mobile_no: "",
     error: null,
+    type:"",
   });
   const { name, mobile_no } = data;
   const handleChangeName = (e) => {
@@ -39,15 +40,17 @@ const Login = () => {
           name,
           mobile_no,
           createdAt: Timestamp.fromDate(new Date()),
+          type: "customer",
         });
         // console.log(data.name," ",data.mobile_no, " ", data.error);
         setData({
           name: "",
           mobile_no: "",
           error: null,
+          type:"",
         });
         // console.log(data.name," ",data.mobile_no, " ", data.error);
-        history.replace("/display");
+        history.replace("/admin");
       } catch (error) {
         setData({ ...data, error: error.message });
       }
