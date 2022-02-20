@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { Timestamp, addDoc, collection } from "firebase/firestore";
 import "../Styling/Login.css";
 import { db } from "../firebase/firebase";
+import { useHistory } from "react-router-dom";
 
 const Login = () => {
+  const history = useHistory();
   const [data, setData] = useState({
     name: "",
     mobile_no: "",
@@ -16,7 +18,7 @@ const Login = () => {
       ...data,
       name: e.target.value,
     });
-    console.log(data);
+    // console.log(data);
   };
   const handleChangeMobile = (e) => {
     e.preventDefault();
@@ -24,9 +26,9 @@ const Login = () => {
       ...data,
       mobile_no: e.target.value,
     });
-    console.log(data);
+    // console.log(data);
   };
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!name || !mobile_no) {
@@ -38,17 +40,19 @@ const Login = () => {
           mobile_no,
           createdAt: Timestamp.fromDate(new Date()),
         });
+        // console.log(data.name," ",data.mobile_no, " ", data.error);
         setData({
           name: "",
           mobile_no: "",
           error: null,
         });
+        // console.log(data.name," ",data.mobile_no, " ", data.error);
+        history.replace("/display");
       } catch (error) {
         setData({ ...data, error: error.message });
       }
     }
   };
-
   return (
     <div className="main_login">
       <h3>UpMenu</h3>
