@@ -2,6 +2,8 @@ import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { db } from "../firebase/firebase";
+import { auth, provider } from "../firebase/firebase";
+import { signInWithPopup } from "firebase/auth";
 import "../Styling/Login.css";
 
 function AddUsers() {
@@ -30,7 +32,7 @@ function AddUsers() {
     if (name !== "" || mobile !== "") {
       let timestamp = serverTimestamp();
       let token = Math.floor(Math.random() * 100 + 1);
-      await addDoc(collection(db, "todos"), {
+      await addDoc(collection(db, "users"), {
         name,
         mobile,
         token,
@@ -42,11 +44,28 @@ function AddUsers() {
       history.replace("/user");
     }
   };
+
+  //Google Signin for shopkeeper
+  const signInWithGoogle = () => {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        console.log(result);
+        if (result.user.email === "mrudulpatel04@gmail.com") {
+          history.replace("/user");
+        } else {
+          alert("Sorry, you are not an admin");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <div className="main_login">
       <div className="container">
         <h3>UpMenu</h3>
-        <button>Login</button>
+        <button onClick={signInWithGoogle}>Login as Admin</button>
       </div>
       <header>
         <h1 className="heading">

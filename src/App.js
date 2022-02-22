@@ -10,7 +10,7 @@ function App1() {
   const [users, setUser] = useState([]);
 
   useEffect(() => {
-    const q = query(collection(db, "todos"), orderBy("timestamp", "desc"));
+    const q = query(collection(db, "users"), orderBy("timestamp", "desc"));
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       let userArr = [];
       querySnapshot.forEach((doc) => {
@@ -22,15 +22,15 @@ function App1() {
   });
 
   const handleEdit = async (user, title) => {
-    await updateDoc(doc(db, "todos", user.id), { title: title });
+    await updateDoc(doc(db, "users", user.id), { title: title });
   };
   const toggleComplete = async (user) => {
-    await updateDoc(doc(db, "todos", user.id), {
+    await updateDoc(doc(db, "users", user.id), {
       completed: !user.completed,
     });
   };
   const handleDelete = async (id) => {
-    await deleteDoc(doc(db, "todos", id));
+    await deleteDoc(doc(db, "users", id));
   };
 
   return (
@@ -41,7 +41,7 @@ function App1() {
             <AddUsers />
           </Route>
           <Route path="/user">
-            <div className="todo_container">
+            <div className="user_container">
                 <h1>ADMIN PAGE</h1>
               {users.map((user) => (
                 <Admin key={user.id} user={user} handleDelete={handleDelete} />
