@@ -1,10 +1,18 @@
-import { collection, deleteDoc, doc, onSnapshot, orderBy, query, updateDoc } from "firebase/firestore";
+import {
+  collection,
+  deleteDoc,
+  doc,
+  onSnapshot,
+  orderBy,
+  query,
+  updateDoc,
+} from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import AddUsers from "./1Components/AddUsers";
 import Admin from "./1Components/Admin";
+import Customer from "./1Components/Customer";
 import { db } from "./firebase/firebase";
-
 
 function App1() {
   const [users, setUser] = useState([]);
@@ -40,13 +48,16 @@ function App1() {
           <Route exact path="/">
             <AddUsers />
           </Route>
-          <Route path="/user">
+          <Route path="/admin" exact>
             <div className="user_container">
-                <h1>ADMIN PAGE</h1>
+              <h1>ADMIN PAGE</h1>
               {users.map((user) => (
                 <Admin key={user.id} user={user} handleDelete={handleDelete} />
               ))}
             </div>
+          </Route>
+          <Route path="/customer">
+            <Customer />
           </Route>
         </Switch>
       </Router>

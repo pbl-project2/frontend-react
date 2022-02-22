@@ -41,7 +41,7 @@ function AddUsers() {
       });
       setMobile("");
       setName("");
-      history.replace("/user");
+      history.replace("/customer");
     }
   };
 
@@ -51,7 +51,7 @@ function AddUsers() {
       .then((result) => {
         console.log(result);
         if (result.user.email === "mrudulpatel04@gmail.com") {
-          history.replace("/user");
+          history.replace("/admin");
         } else {
           alert("Sorry, you are not an admin");
         }
