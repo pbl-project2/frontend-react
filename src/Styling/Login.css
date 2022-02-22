@@ -2,7 +2,7 @@
   font-family: "rubik";
   background-color: #161616;
   color: white;
-}
+}w
 header {
   text-align: center;
   margin-top: 12rem;
@@ -53,4 +53,9 @@ span {
   background: -webkit-linear-gradient(#a03989, orange);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
 }
